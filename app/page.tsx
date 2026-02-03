@@ -167,7 +167,7 @@ export default function StyleGuidePage() {
 
               <div className="flex gap-8">
                 {/* GitHub Template Button */}
-                <a
+                {/* <a
                   className="contents"
                   href="https://adscult.com/"
                   target="_blank"
@@ -176,7 +176,7 @@ export default function StyleGuidePage() {
                     <GithubIcon />
                     Get More Info
                   </ButtonUI>
-                </a>
+                </a> */}
               </div>
             </div>
           </HeaderWrapper>
@@ -314,7 +314,7 @@ export default function StyleGuidePage() {
                   </motion.div>
                 )}
 
-                <div className="flex justify-center mt-4 relative z-20" style={{ border: "2px solid red", minHeight: "100px", background: "rgba(255,0,0,0.1)" }}>
+                <div className="flex justify-center mt-4 relative z-20">
                   <ReCAPTCHA
                     sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
                     onChange={(token) => setCaptchaToken(token)}

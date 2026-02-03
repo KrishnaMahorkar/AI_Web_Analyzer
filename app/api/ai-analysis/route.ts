@@ -285,18 +285,18 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'URL and HTML content are required' }, { status: 400 });
     }
 
-    // // Get IP for rate limiting
-    // const forwardedFor = request.headers.get('x-forwarded-for');
-    // const ip = forwardedFor ? forwardedFor.split(',')[0] : '127.0.0.1';
+    // Get IP for rate limiting
+    const forwardedFor = request.headers.get('x-forwarded-for');
+    const ip = forwardedFor ? forwardedFor.split(',')[0] : '127.0.0.1';
 
-    // if (!checkRateLimit(ip)) {
-    //   return NextResponse.json({
-    //     error: 'Rate limit exceeded. You can only verify one website per 24 hours.'
-    //   }, { status: 429 });
-    // }
+    if (!checkRateLimit(ip)) {
+      return NextResponse.json({
+        error: 'Rate limit exceeded. You can only verify one website per 24 hours.'
+      }, { status: 429 });
+    }
 
-    // // Record this request
-    // recordRequest(ip);
+    // Record this request
+    recordRequest(ip);
 
     const insights = await generateAIInsights(url, htmlContent, currentChecks || []);
 
